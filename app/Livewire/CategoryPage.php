@@ -3,13 +3,17 @@
 namespace App\Livewire;
 
 use Livewire\Component;
+use App\Models\Category;
 use Livewire\Attributes\Title;
 
-#[Title('Category - AyStore Indonesia')]
+#[Title('Categories - AyStore Indonesia')]
 class CategoryPage extends Component
 {
     public function render()
     {
-        return view('livewire.category-page');
+        $categories = Category::where('is_active', 1)->get();
+        return view('livewire.category-page',[
+            'categories' => $categories
+        ]);
     }
 }
